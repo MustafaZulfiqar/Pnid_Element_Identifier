@@ -12,6 +12,6 @@ models = data.get("models", [])
 
 # Print available models
 if models:
-   st.subheader("Models your API key can access:")
-   for model in models:
-    st.write(model["name"])
+    st.subheader("Models your API key can access:")
+    for model in models:
+        st.write(model["name"])
