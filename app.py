@@ -7,24 +7,38 @@ genai.configure(api_key=st.secrets["Google_API"])
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 
-uploaded_file = st.file_uploader("Upload a text file", type=["txt"])
+#uploaded_file = st.file_uploader("Upload a text file", type=["txt"])
 
-def process_with_llm(text):
-    response = model.generate_content(text)
+def ask_llm(question: str) -> str:
+    response = model.generate_content(question)
     return response.text
 
-if uploaded_file:
-    text = uploaded_file.read().decode("utf-8")
+# Text input
+question = st.text_input("Ask a question")
 
-    if st.button("Send to LLM"):
-        with st.spinner("Processing..."):
-            result = process_with_llm(text)
+# Button
+if st.button("Ask"):
+    if question.strip() == "":
+        st.warning("Please enter a question.")
+    else:
+        with st.spinner("Thinking..."):
+            answer = ask_llm(question)
 
-        output = BytesIO(result.encode("utf-8"))
+        st.subheader("Answer")
+        st.write(answer)
 
-        st.download_button(
-            "Download processed file",
-            data=output,
-            file_name="output.txt",
-            mime="text/plain"
-        )
+#if uploaded_file:
+ #   text = uploaded_file.read().decode("utf-8")
+
+  #  if st.button("Send to LLM"):
+   #     with st.spinner("Processing..."):
+    #        result = process_with_llm(text)
+
+     #   output = BytesIO(result.encode("utf-8"))
+
+      #  st.download_button(
+            #"Download processed file",
+            #data=output,
+            #file_name="output.txt",
+            #mime="text/plain"
+        #)
