@@ -3,7 +3,7 @@ from io import BytesIO
 import google.generativeai as genai
 
 st.title("LLM File Processor")
-genai.configure(api_key="AIzaSyAPF_63muYnIY0EgSVJukw7v49f3oLJPtE")
+genai.configure(api_key="AIzaSyCsy6rECIf_4xT9_Bnp9eooqrm47gM3GYw")
 
 model = genai.GenerativeModel("Default Gemini API Key")
 
