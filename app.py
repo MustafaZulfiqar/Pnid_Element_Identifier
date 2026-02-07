@@ -1,15 +1,17 @@
 import streamlit as st
 from io import BytesIO
-import os
+import google.generativeai as genai
 
 st.title("LLM File Processor")
-api_key = st.secrets["Google_Api"]
+genai.configure(api_key=st.secrets["Google_API"])
+model = genai.GenerativeModel("gemini-1.5-flash")
+
 
 uploaded_file = st.file_uploader("Upload a text file", type=["txt"])
 
 def process_with_llm(text):
-    # Replace with real LLM call
-    return text.upper()
+    response = model.generate_content(text)
+    return response.text
 
 if uploaded_file:
     text = uploaded_file.read().decode("utf-8")
