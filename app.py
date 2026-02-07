@@ -10,25 +10,20 @@ model = genai.GenerativeModel("gemini-1.5-flash")
 
 #uploaded_file = st.file_uploader("Upload a text file", type=["txt"])
 
-# Text input
-question = st.text_input("Ask a question")
+
 
 def ask_llm(question: str) -> str:
     response = model.generate_content(question)
     return response.text
 
-
+# Text input
+question = st.text_input("Ask a question")
 
 # Button
 if st.button("Ask"):
-    if question.strip() == "":
-        st.warning("Please enter a question.")
-    else:
-        with st.spinner("Thinking..."):
-            answer = ask_llm(question)
-
-        st.subheader("Answer")
-        st.write(answer)
+    answer = ask_llm(question)
+    st.subheader("Answer")
+    st.write(answer)
 
 #if uploaded_file:
  #   text = uploaded_file.read().decode("utf-8")
