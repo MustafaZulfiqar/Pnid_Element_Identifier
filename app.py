@@ -1,7 +1,9 @@
 import streamlit as st
 from io import BytesIO
+import os
 
 st.title("LLM File Processor")
+api_key = st.secrets["Google_Api"]
 
 uploaded_file = st.file_uploader("Upload a text file", type=["txt"])
 
