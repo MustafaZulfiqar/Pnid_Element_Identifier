@@ -1,6 +1,18 @@
 import streamlit as st
 from io import BytesIO
 import google.generativeai as genai
+import requests
+
+API_KEY = "YOUR_API_KEY_HERE"
+
+url = f"https://generativelanguage.googleapis.com/v1beta/models?key={API_KEY}"
+response = requests.get(url)
+data = response.json()
+
+# Print available models
+for model in data.get("models", []):
+    print(model["name"])
+
 
 st.title("LLM File Processor")
 genai.configure(api_key="AIzaSyCsy6rECIf_4xT9_Bnp9eooqrm47gM3GYw")
@@ -25,17 +37,7 @@ if st.button("Ask"):
     st.subheader("Answer")
     st.write(answer)
 
-import requests
 
-API_KEY = "AIzaSyCsy6rECIf_4xT9_Bnp9eooqrm47gM3GYw"
-
-url = f"https://generativelanguage.googleapis.com/v1beta/models?key={API_KEY}"
-response = requests.get(url)
-data = response.json()
-
-# Print available models
-for model in data.get("models", []):
-    print(model["name"])
 
 #if uploaded_file:
  #   text = uploaded_file.read().decode("utf-8")
