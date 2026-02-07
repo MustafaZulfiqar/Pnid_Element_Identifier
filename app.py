@@ -3,7 +3,8 @@ from io import BytesIO
 import google.generativeai as genai
 
 st.title("LLM File Processor")
-genai.configure(api_key=st.secrets["Google_API"])
+genai.configure(api_key="AIzaSyAPF_63muYnIY0EgSVJukw7v49f3oLJPtE")
+
 model = genai.GenerativeModel("gemini-1.5-flash")
 
 
