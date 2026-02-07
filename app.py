@@ -1,22 +1,28 @@
 import streamlit as st
-from io import BytesIO
 import google.generativeai as genai
-import requests
 
-API_KEY = "YOUR_API_KEY_HERE"
+st.title("Ask Gemini")
 
-url = f"https://generativelanguage.googleapis.com/v1beta/models?key={API_KEY}"
-response = requests.get(url)
+# Configure the API key
+genai.configure(api_key="YOUR_API_KEY_HERE")  # Or st.secrets["Google_API"]
 
-if response.status_code == 200:
-    data = response.json()
-    models = data.get("models", [])
-else:
-    st.error(f"Failed to fetch models. Status code: {response.status_code}")
-    st.stop()
+# Free-tier model
+model = genai.GenerativeModel("gemini-2.5-flash")
 
-# Print available models
-if models:
-    st.subheader("Models your API key can access:")
-    for model in models:
-        st.write(model["name"])
+def ask_llm(question: str) -> str:
+    question = str(question).strip()
+    if not question:
+        return "Please enter a question."
+    response = model.generate_content(question)
+    return response.text
+
+# Text input
+question = st.text_input("Ask a question")
+
+# Button to query
+if st.button("Ask"):
+    with st.spinner("Thinking..."):
+        answer = ask_llm(question)
+    st.subheader("Answer")
+    st.write(answer)
+
