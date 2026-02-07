@@ -32,10 +32,10 @@ def ask_llm(question: str) -> str:
 
 
 # Button
-if st.button("Ask"):
-    answer = ask_llm(question)
-    st.subheader("Answer")
-    st.write(answer)
+#if st.button("Ask"):
+ #   answer = ask_llm(question)
+  #  st.subheader("Answer")
+   # st.write(answer)
 
 
 
