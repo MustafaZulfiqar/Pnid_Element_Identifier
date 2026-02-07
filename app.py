@@ -5,7 +5,7 @@ import google.generativeai as genai
 st.title("LLM File Processor")
 genai.configure(api_key="AIzaSyAPF_63muYnIY0EgSVJukw7v49f3oLJPtE")
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("Default Gemini API Key")
 
 
 #uploaded_file = st.file_uploader("Upload a text file", type=["txt"])
