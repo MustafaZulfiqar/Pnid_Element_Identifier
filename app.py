@@ -7,8 +7,13 @@ API_KEY = "YOUR_API_KEY_HERE"
 
 url = f"https://generativelanguage.googleapis.com/v1beta/models?key={API_KEY}"
 response = requests.get(url)
-data = response.json()
-models = data.get("models", [])
+
+if response.status_code == 200:
+    data = response.json()
+    models = data.get("models", [])
+else:
+    st.error(f"Failed to fetch models. Status code: {response.status_code}")
+    st.stop()
 
 # Print available models
 if models:
