@@ -11,4 +11,4 @@ data = response.json()
 
 # Print available models
 for model in data.get("models", []):
-    print(model["name"])
+   st.write(model["name"])
