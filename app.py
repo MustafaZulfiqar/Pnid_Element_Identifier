@@ -4,7 +4,7 @@ import google.generativeai as genai
 st.title("Ask Gemini")
 
 # Configure the API key
-genai.configure(api_key="YOUR_API_KEY_HERE")  # Or st.secrets["Google_API"]
+genai.configure(api_key="AIzaSyCsy6rECIf_4xT9_Bnp9eooqrm47gM3GYw")  # Or st.secrets["Google_API"]
 
 # Free-tier model
 model = genai.GenerativeModel("gemini-2.5-flash")
