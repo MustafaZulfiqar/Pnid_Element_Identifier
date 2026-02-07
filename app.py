@@ -8,7 +8,10 @@ API_KEY = "YOUR_API_KEY_HERE"
 url = f"https://generativelanguage.googleapis.com/v1beta/models?key={API_KEY}"
 response = requests.get(url)
 data = response.json()
+models = data.get("models", [])
 
 # Print available models
-for model in data.get("models", []):
-   st.write(model["name"])
+if models:
+   st.subheader("Models your API key can access:")
+   for model in models:
+    st.write(model["name"])
